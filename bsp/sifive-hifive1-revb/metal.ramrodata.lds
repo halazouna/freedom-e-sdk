@@ -4,7 +4,7 @@ ENTRY(_enter)
 
 MEMORY
 {
-	flash (rxai!w) : ORIGIN = 0x20010000, LENGTH = 0x6a120
+	flash (rxai!w) : ORIGIN = 0x20040000, LENGTH = 0x7a120
 	itim (wx!rai) : ORIGIN = 0x8000000, LENGTH = 0x2000
 	ram (wxa!ri) : ORIGIN = 0x80000000, LENGTH = 0x4000
 }
