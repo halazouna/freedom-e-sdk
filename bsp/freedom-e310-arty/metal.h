@@ -107,6 +107,9 @@ struct __metal_driver_riscv_plic0 __metal_dt_interrupt_controller_c000000;
 /* From local_external_interrupts_0 */
 struct __metal_driver_sifive_local_external_interrupts0 __metal_dt_local_external_interrupts_0;
 
+/* From PMP */
+struct metal_pmp __metal_dt_pmp;
+
 /* From gpio@10012000 */
 struct __metal_driver_sifive_gpio0 __metal_dt_gpio_10012000;
 
@@ -236,7 +239,7 @@ static __inline__ struct metal_interrupt * __metal_driver_cpu_interrupt_controll
 static __inline__ int __metal_driver_cpu_num_pmp_regions(struct metal_cpu *cpu)
 {
 	if ((uintptr_t)cpu == (uintptr_t)&__metal_dt_cpu_0) {
-		return 0;
+		return 8;
 	}
 	else {
 		return 0;
@@ -763,6 +766,8 @@ struct __metal_driver_cpu *__metal_cpu_table[] = {
 #define __METAL_DT_RISCV_PLIC0_HANDLE (&__metal_dt_interrupt_controller_c000000.controller)
 
 #define __METAL_DT_INTERRUPT_CONTROLLER_C000000_HANDLE (&__metal_dt_interrupt_controller_c000000.controller)
+
+#define __METAL_DT_PMP_HANDLE (&__metal_dt_pmp)
 
 /* From local_external_interrupts_0 */
 #define __METAL_DT_SIFIVE_LOCAL_EXINTR0_HANDLE (&__metal_dt_local_external_interrupts_0.irc)
