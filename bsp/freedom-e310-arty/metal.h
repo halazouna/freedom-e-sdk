@@ -80,6 +80,9 @@
 #include <metal/drivers/sifive_gpio0.h>
 #include <metal/drivers/sifive_spi0.h>
 #include <metal/drivers/sifive_uart0.h>
+#include <metal/drivers/sifive_gpio-leds.h>
+
+
 
 /* From clock@0 */
 struct __metal_driver_fixed_clock __metal_dt_clock_0;
@@ -106,6 +109,15 @@ struct __metal_driver_sifive_local_external_interrupts0 __metal_dt_local_externa
 
 /* From gpio@10012000 */
 struct __metal_driver_sifive_gpio0 __metal_dt_gpio_10012000;
+
+/* From led@0red */
+struct __metal_driver_sifive_gpio_led __metal_dt_led_0red;
+
+/* From led@0green */
+struct __metal_driver_sifive_gpio_led __metal_dt_led_0green;
+
+/* From led@0blue */
+struct __metal_driver_sifive_gpio_led __metal_dt_led_0blue;
 
 /* From spi@10014000 */
 struct __metal_driver_sifive_spi0 __metal_dt_spi_10014000;
@@ -485,7 +497,53 @@ static __inline__ int __metal_driver_sifive_gpio0_interrupt_lines(struct metal_g
 
 
 /* --------------------- sifive_gpio_led ------------ */
+static __inline__ struct metal_gpio * __metal_driver_sifive_gpio_led_gpio(struct metal_led *led)
+{
+	if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0red) {
+		return (struct metal_gpio *)&__metal_dt_gpio_10012000;
+	}
+	else if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0green) {
+		return (struct metal_gpio *)&__metal_dt_gpio_10012000;
+	}
+	else if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0blue) {
+		return (struct metal_gpio *)&__metal_dt_gpio_10012000;
+	}
+	else {
+		return NULL;
+	}
+}
 
+static __inline__ int __metal_driver_sifive_gpio_led_pin(struct metal_led *led)
+{
+	if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0red) {
+		return 22;
+	}
+	else if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0green) {
+		return 19;
+	}
+	else if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0blue) {
+		return 21;
+	}
+	else {
+		return 0;
+	}
+}
+
+static __inline__ char * __metal_driver_sifive_gpio_led_label(struct metal_led *led)
+{
+	if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0red) {
+		return "LD0red";
+	}
+	else if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0green) {
+		return "LD0green";
+	}
+	else if ((uintptr_t)led == (uintptr_t)&__metal_dt_led_0blue) {
+		return "LD0blue";
+	}
+	else {
+		return "";
+	}
+}
 
 /* --------------------- sifive_gpio_switch ------------ */
 
@@ -722,11 +780,13 @@ struct __metal_driver_sifive_gpio0 *__metal_gpio_table[] = {
 __asm__ (".weak __metal_button_table");
 struct __metal_driver_sifive_gpio_button *__metal_button_table[] = {
 					NULL };
-#define __METAL_DT_MAX_LEDS 0
+#define __METAL_DT_MAX_LEDS 3
 
 __asm__ (".weak __metal_led_table");
 struct __metal_driver_sifive_gpio_led *__metal_led_table[] = {
-					NULL };
+					&__metal_dt_led_0red,
+					&__metal_dt_led_0green,
+					&__metal_dt_led_0blue};
 #define __METAL_DT_MAX_SWITCHES 0
 
 __asm__ (".weak __metal_switch_table");

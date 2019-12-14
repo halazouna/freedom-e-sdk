@@ -64,6 +64,14 @@
 #define METAL_SIFIVE_GPIO0_IOF_SEL 60UL
 #define METAL_SIFIVE_GPIO0_OUT_XOR 64UL
 
+/* From led@0red */
+
+/* From led@0green */
+
+/* From led@0blue */
+
+#define METAL_SIFIVE_GPIO_LEDS
+
 /* From local_external_interrupts_0 */
 
 #define METAL_SIFIVE_LOCAL_EXTERNAL_INTERRUPTS0

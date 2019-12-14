@@ -69,7 +69,9 @@ extern __inline__ int __metal_driver_sifive_gpio0_interrupt_lines(struct metal_g
 
 
 /* --------------------- sifive_gpio_led ------------ */
-
+extern __inline__ struct metal_gpio * __metal_driver_sifive_gpio_led_gpio(struct metal_led *led);
+extern __inline__ int __metal_driver_sifive_gpio_led_pin(struct metal_led *led);
+extern __inline__ char * __metal_driver_sifive_gpio_led_label(struct metal_led *led);
 
 /* --------------------- sifive_gpio_switch ------------ */
 
@@ -194,7 +196,20 @@ struct __metal_driver_sifive_local_external_interrupts0 __metal_dt_local_externa
 struct __metal_driver_sifive_gpio0 __metal_dt_gpio_10012000 = {
     .gpio.vtable = &__metal_driver_vtable_sifive_gpio0.gpio,
 };
+/* From led@0red */
+struct __metal_driver_sifive_gpio_led __metal_dt_led_0red = {
+    .led.vtable = &__metal_driver_vtable_sifive_led.led_vtable,
+};
 
+/* From led@0green */
+struct __metal_driver_sifive_gpio_led __metal_dt_led_0green = {
+    .led.vtable = &__metal_driver_vtable_sifive_led.led_vtable,
+};
+
+/* From led@0blue */
+struct __metal_driver_sifive_gpio_led __metal_dt_led_0blue = {
+    .led.vtable = &__metal_driver_vtable_sifive_led.led_vtable,
+};
 /* From spi@10014000 */
 struct __metal_driver_sifive_spi0 __metal_dt_spi_10014000 = {
     .spi.vtable = &__metal_driver_vtable_sifive_spi0.spi,
